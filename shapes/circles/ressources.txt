@@ -1,0 +1,11 @@
+Circle equation:
+https://www.mathopenref.com/coordbasiccircle.html
+
+Circle equation center anywhere:
+https://www.mathopenref.com/coordgeneralcircle.html
+
+dot product of vector with itself:
+https://www.youtube.com/watch?v=piMDQD8Igg8
+
+circles via dot product:
+https://www.youtube.com/watch?v=ZYodF7ikj5g&t=776s
