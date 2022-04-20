@@ -44,7 +44,7 @@ float fadedCricle(in vec2 _st, float radius){
 }
 
 void main(){
-	vec2 st = gl_FragCoord.xy/iResolution.xy;
+	vec2 st = gl_FragCoord.xy/u_resolution.xy;
 
     //vec3 color = vec3(quarterCircle(st,0.3));
 	//vec3 color = vec3(circle(st,0.1));

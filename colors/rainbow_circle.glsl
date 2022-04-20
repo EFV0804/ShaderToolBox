@@ -52,7 +52,7 @@ vec3 hsb2rgb( in vec3 c ){
 }
 
 void main(){
-    vec2 st = gl_FragCoord.xy/iResolution.xy;
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
     vec3 color = vec3(0.0);
 
     //use polar coordinates
@@ -62,7 +62,7 @@ void main(){
     float radius = length(toCenter)*(2.0); 
     float ring = radius * smoothstep(1.,0.999,radius);
 
-    color = hsb2rgb(vec3((angle/TWO_PI)+iTime*0.5,ring,1.0));
+    color = hsb2rgb(vec3((angle/TWO_PI)+u_time*0.5,ring,1.0));
 
     gl_FragColor = vec4(color,1.0);
 }

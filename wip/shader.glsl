@@ -38,7 +38,7 @@ vec3 hsb2rgb( in vec3 c ){
 }
 
 void main(){
-    vec2 st = gl_FragCoord.xy/iResolution.xy;
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
     vec3 color = vec3(0.0);
 
     // We map x (0.0 - 1.0) to the hue (0.0 - 1.0)
