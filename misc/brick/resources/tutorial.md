@@ -70,9 +70,8 @@ So if use the **step()** function with our new value and compare it to 0.5, we s
 
 
 <div style="vertical-align:middle; text-align:center">
-    <img src="./illustrations/offset_graph.png" width="200" height="400"/>
+    <img src="./illustrations/offset_graph.PNG" width="200" height="400"/>
 </div>
-
 
 The blue dotted line represents `step(fract(y*0.5),0.5)`. We can then divide the result of our step(), to create a probable offset.
 
