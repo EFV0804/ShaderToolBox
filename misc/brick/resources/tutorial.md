@@ -52,8 +52,8 @@ First, let's break down this part
 The fract() function return the fractional part of a float. On the left `fract(y)`, on the right `fract(y*0.5)`:
 
 <div style="vertical-align:middle; text-align:center">
-    <img src="./illustrations/fract_y.png" width="200" height="400"/>
-    <img src="./illustrations/fract_half_y.png" width="200" height="400"/>
+    <img src="./illustrations/fract_y_.PNG" width="200" height="400"/>
+    <img src="./illustrations/fract_half_y.PNG" width="200" height="400"/>
 </div>
 
 The difference is that when y is halved, the fractional part of why covers two rows instead of one. We have a new row of bricks every **0.5**, instead of every **1** units. With this new value we can deduce if a row is odd or even, because for even row `fract(y*0.5) < 0.5`, and for odd rows `fract(y*0.5) > 0.5`.
