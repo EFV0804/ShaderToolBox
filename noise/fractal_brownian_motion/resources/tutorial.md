@@ -16,3 +16,13 @@ First we need a noise function. The function we use is based on [Morgan McGuire'
 </div>
 
 
+## FBM
+
+
+## Warping
+
+image produce with fmb function described above.
+
+<div style="vertical-align:middle; text-align:center">
+    <img src=".\illustrations\fbm_warp_01.jpg" width="100%" height="100%"/>
+</div>
