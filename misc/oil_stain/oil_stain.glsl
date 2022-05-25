@@ -93,7 +93,7 @@ float pattern(in vec2 p, out vec2 q, out vec2 r){
 }
 void main(){
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
-    // st.x *= u_resolution.x/u_resolution.y;
+    st.x *= u_resolution.x/u_resolution.y;
 
     vec3 color = vec3(0.0);
 
