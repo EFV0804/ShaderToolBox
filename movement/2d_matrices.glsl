@@ -48,6 +48,7 @@ mat2 scale(vec2 _scale){
 
 void main(){
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    // vec2 c = u_resolution/2.0;
     vec3 color = vec3(0.0);
 
     //color -= vec3(rectangle(st, vec2(.5,.5), vec2(.25,.25)));
@@ -56,14 +57,18 @@ void main(){
     //rotate
     st = rotate2d(-u_time*0.5)*st;
     //scale
-    st = scale(vec2(10))*st;
+    float scalar = 20.;
+    // float scalar = sin(st.x+2.); // curves outer edge of square
+    st = scale(vec2(scalar))*st;
 
     //move st back to original position
     st += vec2(0.5);
 
     color += vec3(rectangle(st, vec2(.5,.5), vec2(.25,.25)));
 
-    color += vec3(st.x, st.y, 0.);
+    // color += vec3(rectangle(st, vec2(.5,.5), vec2(.01,.01)));
+
+    // color += vec3(st.x, st.y, 0.);
    
     gl_FragColor = vec4(color,1.0);
 }
