@@ -71,12 +71,13 @@ float fbm_ridge(in vec2 st) {
 
 //     return fmb(p +4.0+r); 
 // }
+
 void main(){
-    vec2 st = gl_FragCoord.xy/iResolution.xy;
-    st.x *= iResolution.x/iResolution.y;
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
+
 
     vec3 color = vec3(0.0);
     color += fbm(st*3.0);
-
     gl_FragColor = vec4(color,1.0);
 }
