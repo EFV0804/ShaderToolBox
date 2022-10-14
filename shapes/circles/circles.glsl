@@ -42,7 +42,15 @@ float fadedCricle(in vec2 _st, float radius){
     //0 and 1 rather than 0 OR 1
     //first param of smoothstep makes the outside grow inside and seconde is the oppisite
 }
+float circle_outline(in vec2 _st, float radius, vec2 centre){
 
+    float funky_radius = radius;
+    float dist = length(_st-centre);
+    // Substract a circle inside a first circle to create an outline
+	float outline = (1.-smoothstep(funky_radius,funky_radius, dist-0.005/2.)) - (1.-smoothstep(funky_radius,funky_radius, dist+0.005/2.));
+
+    return outline;
+}
 void main(){
 	vec2 st = gl_FragCoord.xy/u_resolution.xy;
 
