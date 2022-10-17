@@ -60,7 +60,7 @@ float fbm_wrap(in vec2 st) {
     float amplitude = 0.5;
     float frequency = 2.;
     vec2 shift = vec2(100.);
-    mat2 rot = mat2(cos(0.5), sin(0.5),
+    mat2 rot = mat2(cos(.5), sin(0.5),
                 -sin(0.5), cos(0.50));
 
     // Loop of octaves
@@ -102,11 +102,6 @@ void main(){
 
     vec3 color = vec3(0.0);
 
-    //static color split V1
-    // color.r += fbm(st+ 20.*(fbm(st+fbm(st))));
-    // color.g += fbm(st+ 4.*(fbm(st+fbm(st))));
-    // color.b += fbm(st+ 15.*(fbm(st+fbm(st))));
-
 
     //"folded" texture
     vec2 q = vec2(0.);
@@ -119,14 +114,13 @@ void main(){
     vec2 r = vec2(0.);
     r.x = fbm(st+q+u_time*0.05);
     r.y = fbm(st+q+vec2(.4,0.7)+u_time*0.08);
-    
     // preview r
     color += vec3(r.x, r.y, 0.);
 
     float f = fbm(st+r);
-
+    //preview f
     color = vec3(0.);
-    // color += vec3(f,0.,0.);
+    color += vec3(f,0.,0.);
 
     color = mix(vec3(0.6, 0.5255, 0.6078),
                 vec3(0.8392, 0.6824, 0.3843),
@@ -139,20 +133,6 @@ void main(){
     color = mix(color,
                 vec3(0.6588, 0.6588, 0.6196),
                 clamp(length(r.x),0.0,1.0));
-
-
-    // r.y = fbm( st + 1.0*q + vec2(15.,2.));
-
-    // //split colors with "ridges"
-    // color.r = fbm(st+r*20.);
-    // color.g = fbm(st+r*1.);
-    // color.b = fbm(st+r*13.);
-
-    //cloudy sin anim, one direction
-    // color.r = fbm(vec2(st+20.+u_time*0.15));
-    // color.g = fbm(vec2(st+4.+u_time*0.15));
-    // color.b = fbm(vec2(st+15.+u_time*0.15));
-
 
     //regular color mapping
     gl_FragColor = vec4(color,1.);
