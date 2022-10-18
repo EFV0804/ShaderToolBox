@@ -227,6 +227,9 @@ void main(){
     float v;
 
 
+    float white = fbm_warp(st*(a*.9), r);
+    white = smoothstep(0.8, 1.5, white);
+    color += white*vec3(0.6471, 0.6392, 0.6392);
 
     // red volumes
 
@@ -280,6 +283,7 @@ void main(){
     // overall illumination of the scene
     float lightness = cnoise(st*(a*0.3)+fbm(st+0.4));
     color += (lightness*vec3(0.9137, 0.898, 0.898))*0.15;
+
 
 
 
