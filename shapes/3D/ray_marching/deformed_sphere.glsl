@@ -79,7 +79,7 @@ void main(){
     vec3 col = vec3(0.);
 
     vec3 ta = vec3( 0., 0., 0. );
-    vec3 ro = ta + vec3(4.5*cos(0.1*u_time + 7.0*mo.x), 2., 4.5*sin(0.1*u_time + 7.*mo.x) );
+    vec3 ro = ta + vec3(4.5*cos(7.0*mo.x), 2., 4.5*sin(7.0*mo.x));
     mat3 ca = setCamera( ro, ta, 0.0 );
     vec3 rd = ca *normalize(vec3(vec2(st.s, st.t), 1.));
 
