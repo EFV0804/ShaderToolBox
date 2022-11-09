@@ -17,8 +17,9 @@ float getDistSphere(vec3 p, vec3 sphere_pos, float radius){
 float getSceneDist(vec3 p){
     float sphere = getDistSphere(p, vec3(0,0,0.), 1.);
     float displacement = sin(5. * (p.x+cos(u_time))) * sin(5.* (p.y+cos(u_time))) * sin(5. * (p.z+sin(u_time)))*.25;
-    float plane = min(sphere, p.y);
-    return sphere+displacement;
+    float plane = p.y+1.5;
+    float d = min(sphere+displacement, plane);
+    return d;
 }
 
 float raymarch(vec3 ro, vec3 rd){
@@ -52,10 +53,10 @@ float getLight(vec3 p, vec3 lightPos){
     float diffuse = clamp(dot(n,l),0.,1.);
 
     // shadow
-    // float d = raymarch(p+n*SURFACE_DIST*1.1, l);
-    // if(d<length(lightPos-p)){
-    //     diffuse *= .1;
-    // }
+    float d = raymarch(p+n, l);
+    if(d<length(lightPos-p)){
+        diffuse *= .1;
+    }
 
     return diffuse;
 
@@ -74,7 +75,7 @@ mat3 setCamera( in vec3 ro, in vec3 ta, float cr )
 void main(){
     vec2 st = (gl_FragCoord.xy-0.5*u_resolution.xy)/u_resolution.y;
     vec2 mo = u_mouse.xy/u_resolution.xy;
-    
+
     vec3 col = vec3(0.);
 
     vec3 ta = vec3( 0., 0., 0. );
@@ -86,8 +87,7 @@ void main(){
 
     //Light
     vec3 p  = ro + rd * d;
-    float diffuse = getLight(p, vec3(0.,5.,0.));
-    diffuse += getLight(p, vec3(4,-8,-5.))*0.2;
+    float diffuse = getLight(p, vec3(0.,8.,6.));
 
 //sdf visualation
     // col = vec3(d)/10.;
