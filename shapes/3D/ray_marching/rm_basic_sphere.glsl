@@ -1,3 +1,4 @@
+//Based on tutorial by Martijn Steinrucken:  https://www.shadertoy.com/view/XlGBW3
 precision mediump float;
 uniform vec2 u_resolution;
 uniform float u_time;
