@@ -20,17 +20,15 @@ float getDist(vec3 p){
 }
 
 float raymarch(vec3 ro, vec3 rd){
-    //distance to origin
-    float dO = 0.;
+    float distance_traveled = 0.;
     for(int i = 0; i<MAX_STEPS; i++){
-        // sets point for position on the vector ro at the distance dO in the direction rd
-        vec3 p = ro +dO*rd;
-        //distance from scene
-        float ds = getDist(p);
-        dO += ds;
-        if(ds<SURFACE_DIST || dO>MAX_DIST){break;}
+        vec3 current_pos = ro +distance_traveled*rd;
+        float distance_closest = getDist(current_pos);
+        distance_traveled += distance_closest;
+        if(distance_closest<SURFACE_DIST || distance_traveled>MAX_DIST){break;}
     }
-    return dO;
+
+    return distance_traveled;
 }
 
 void main(){
@@ -39,11 +37,11 @@ void main(){
     vec3 col = vec3(0.);
 
 // ray origin
-    vec3 ro = vec3(0,1,0);
+    vec3 ray_origine = vec3(0,1,0);
 // ray direction
-    vec3 rd = normalize(vec3(st.s, st.t, 1.));
+    vec3 ray_direction = normalize(vec3(st.s, st.t, 1.));
 //raymarched distance
-    float d = raymarch(ro, rd);
+    float d = raymarch(ray_origin,ray_direction);
     // divide distance because everything further than max dist and therefor ignored.
     col = vec3(d)/10.;
     gl_FragColor = vec4(col, 1.);
