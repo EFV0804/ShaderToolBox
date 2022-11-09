@@ -16,14 +16,15 @@ float getDist(vec3 p){
 }
 
 float raymarch(vec3 ro, vec3 rd){
-    float dO = 0.;
+    float distance_traveled = 0.;
     for(int i = 0; i<MAX_STEPS; i++){
-        vec3 p = ro +dO*rd;
-        float ds = getDist(p);
-        dO += ds;
-        if(ds<SURFACE_DIST || dO>MAX_DIST){break;}
+        vec3 current_pos = ro +distance_traveled*rd;
+        float ds = getDist(current_pos);
+        distance_traveled += ds;
+        if(ds<SURFACE_DIST || distance_traveled>MAX_DIST){break;}
     }
-    return dO;
+
+    return distance_traveled;
 }
 
 vec3 getNormal(vec3 p){
@@ -38,7 +39,7 @@ vec3 getNormal(vec3 p){
 }
 
 float getLight(vec3 p){
-    vec3 lightPos = vec3(0,5,1);
+    vec3 lightPos = vec3(1,5,1);
     lightPos.xy += vec2(sin(u_time), cos(u_time))*2.;
     vec3 l = normalize(lightPos-p);
     vec3 n = getNormal(p);
