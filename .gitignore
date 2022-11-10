@@ -353,3 +353,4 @@ MigrationBackup/
 #my stuff
 ref/
 *.html
+*.afpub
