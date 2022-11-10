@@ -2,16 +2,35 @@
 WIP obviously
 ## Ray marching
 ### Definition
-Ray marching is a rendering method, where a ray is cast from a point of origin, a camera, in a direction, and it subdivided into smaller segments until an intersection with a surface is detected. 
-The segmentation is often done using spheres, hence the other name for ray marching: sphere marching. It can also be achieved using cube, but that won't be covered here.
+Ray marching is a rendering method, where a ray is cast from a point of origin in a direction, and is subdivided into smaller segments until an intersection with a surface is detected. 
+The segmentation is often done using spheres, hence the other name for ray marching: sphere marching. It can also be achieved using cubes, but that won't be covered here.
 The surface that the ray intersects with is defined [signed distance functions](https://en.wikipedia.org/wiki/Signed_distance_function).
 
-__INSERT RAY MARCHING DIAGRAM__ 
+---
+### How it works
+Ray marching is very litteraly named. We are trying to move along a ray to find a surface. The movement along the ray is done in steps. For each step we check the distance from our current position to the closest surface, add that distance to the total distance traveled along the ray, and update our current position for the next step.
+
+
+In the following stunning GIF, the steps are represented by the orange circles, the current position is the red circles, and the green line is the distance to the closest surface.
+
+![A beautiful GIF should show up](ray_marching_steps.gif)
+
+ We repeat that process until one of three things happen:
+
+    1. We exceed the set maximum number of steps.
+
+    2. The distance we measure is smaller than the minimum distance to a surface. In other words: we are close enough.
+
+    3. The distance traveled along the ray exceeds the set maximum distance.
+
+Once one of those conditions is met, we return the distance traveled along the ray, which corresponds to the distance from the camera to the surface. Then we move on to another ray, and repeat the whole process.
+
+---
 
 ### Implementation
 1. Casting Rays
 
-The first thing we have to do is to cast rays that we can then march along. This is the equivalent of a camera, it is placed in the world and points at something, or in other terms is has a position and a direction.
+The first thing we have to do is to cast rays that we can march along. This is the equivalent of a camera, it is placed in the world and points at something, or in other terms is has a position and a direction.
 ```glsl
     vec3 ray_origin = vec3(0,1,0);
     vec3 ray_direction = normalize(vec3(st.s, st.t, 1.));
@@ -54,7 +73,7 @@ The we define the ray marching function, that we creativly call "raymarch".
 The raymarch function takes in the ray's origin _ro_ and the ray's direction _rd_
 
 
-
+---
 ## Signed distance functions
 definition
 ## Basic shapes
@@ -63,7 +82,7 @@ Using distance functions, basic shapes can easily be drawn. inogo Quilez has a a
 ### Box
 ### Capsule
 ### Torus
-
+---
 # Credits
 - [Ray Marching for Dummies](https://www.youtube.com/watch?v=PGtv-dBi2wE) by [The Art of Code](https://www.youtube.com/c/TheArtofCodeIsCool): explains the basic concepts simply and implements them in ShaderToy.
 - [Ray Marching Primitives](https://www.shadertoy.com/view/wdf3zl) by [The Art of Code](https://www.youtube.com/c/TheArtofCodeIsCool): Explains the signed distance functions for some basic shapes, and does an implementation of them in ShaderToy.
