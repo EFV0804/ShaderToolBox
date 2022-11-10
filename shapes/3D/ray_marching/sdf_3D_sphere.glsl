@@ -5,7 +5,7 @@ uniform float u_time;
 
 #define MAX_STEPS 100
 #define MAX_DIST 100.
-#define SURFACE_DIST 0.01
+#define SURFACE_DIST 0.001
 
 float sdSphere(vec3 p){
     //For a sphere
@@ -36,15 +36,12 @@ void main(){
 
     vec3 col = vec3(0.);
 
-// ray origin
     vec3 ray_origin = vec3(0,1,0);
-// ray direction
-    vec3 ray_direction = normalize(vec3(st.s, st.t, 1.));
+    vec3 ray_direction = normalize(vec3(st.s,st.t, 0.9));
 //raymarched distance
     float d = raymarch(ray_origin,ray_direction);
     // divide distance because everything further than max dist and therefor ignored.
     col = vec3(d)/10.;
-    
     gl_FragColor = vec4(col, 1.);
 
 }
