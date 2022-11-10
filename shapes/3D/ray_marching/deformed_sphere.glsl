@@ -8,6 +8,11 @@ uniform vec2 u_mouse;
 #define MAX_DIST 10000000.
 #define SURFACE_DIST 0.0001
 
+mat2 rotate(float a){
+    float s = sin(a);
+    float c = cos(a);
+    return mat2(c, -s, s, c);
+}
 float getDistSphere(vec3 p, vec3 sphere_pos, float radius){
     vec4 sphere = vec4(sphere_pos,radius);
 
@@ -70,16 +75,29 @@ mat3 setCamera( in vec3 ro, in vec3 ta, float cr )
     return mat3( cu, cv, cw );
 }
 
+vec3 R(vec2 st, vec3 p, vec3 l, float z) {
+    //https://www.shadertoy.com/view/3ssGWj
+    //camera to world transformation
+    vec3 f = normalize(l-p),
+        r = normalize(cross(vec3(0,1,0), f)),
+        u = cross(f,r),
+        c = p+f*z,
+        i = c + st.x*r + st.y*u,
+        d = normalize(i-p);
+    return d;
+}
+
 void main(){
     vec2 st = (gl_FragCoord.xy-0.5*u_resolution.xy)/u_resolution.y;
     vec2 mo = u_mouse.xy/u_resolution.xy;
 
     vec3 col = vec3(0.);
 
-    vec3 ta = vec3( 0., 0., 0. );
-    vec3 ro = ta + vec3(4.5*cos(7.0*mo.x), 2., 4.5*sin(7.0*mo.x));
-    mat3 ca = setCamera( ro, ta, 0.0 );
-    vec3 rd = ca *normalize(vec3(vec2(st.s, st.t), 1.));
+    vec3 ro = vec3(0,0,-5);
+    ro.yz *= rotate(mo.y);
+    ro.xz *= rotate(mo.x*6.);
+
+    vec3 rd = R(st, ro, vec3(0,0,0), 0.9);
 
     float d = raymarch(ro, rd);
 
@@ -87,12 +105,14 @@ void main(){
     vec3 p  = ro + rd * d;
     float diffuse = getLight(p, vec3(0.,8.,6.));
 
+
 //sdf visualation
     // col = vec3(d)/10.;
 //Normal visualisation
     // col = getNormal(p);
 //Light visualisation
-    col = vec3(diffuse);
+    col += diffuse;
+
 
     gl_FragColor = vec4(col, 1.);
 
