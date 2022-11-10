@@ -7,7 +7,7 @@ uniform float u_time;
 #define MAX_DIST 100.
 #define SURFACE_DIST 0.01
 
-float getDist(vec3 p){
+float sdSphere(vec3 p){
     //For a sphere
     vec4 sphere = vec4(0, 1, 6,1);
     //distance from p (camera or latest marched point) and sphere centre - radius
@@ -23,7 +23,7 @@ float raymarch(vec3 ro, vec3 rd){
     float distance_traveled = 0.;
     for(int i = 0; i<MAX_STEPS; i++){
         vec3 current_pos = ro +distance_traveled*rd;
-        float distance_closest = getDist(current_pos);
+        float distance_closest = sdSphere(current_pos);
         distance_traveled += distance_closest;
         if(distance_closest<SURFACE_DIST || distance_traveled>MAX_DIST){break;}
     }
@@ -37,13 +37,14 @@ void main(){
     vec3 col = vec3(0.);
 
 // ray origin
-    vec3 ray_origine = vec3(0,1,0);
+    vec3 ray_origin = vec3(0,1,0);
 // ray direction
     vec3 ray_direction = normalize(vec3(st.s, st.t, 1.));
 //raymarched distance
     float d = raymarch(ray_origin,ray_direction);
     // divide distance because everything further than max dist and therefor ignored.
     col = vec3(d)/10.;
+    
     gl_FragColor = vec4(col, 1.);
 
 }
