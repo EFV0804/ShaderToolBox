@@ -46,8 +46,6 @@ vec3 getNormal(vec3 p){
 }
 
 float getLight(vec3 p, vec3 lightPos){
-    // vec3 lightPos = vec3(0,5,2);
-    // lightPos.xy += vec2(cos(u_time), sin(u_time))*20.;
     vec3 l = normalize(lightPos-p);
     vec3 n = getNormal(p);
     float diffuse = clamp(dot(n,l),0.,1.);
