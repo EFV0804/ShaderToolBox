@@ -35,8 +35,8 @@ The first thing we have to do is to cast rays that we can march along. This is t
     vec3 ray_origin = vec3(0,1,0);
     vec3 ray_direction = normalize(vec3(st.s, st.t, 1.));
 ```
-The _ray_origin_ vector is quite simple, it's at the center of the world, slightly elevated to look down on the scene.
-The _ray_direction_ vector is a normalised, or unit vector. The first two parameters are the canvas coordinates, which means that we cast a ray for each fragment on screen. The last is the distance to the "image", the focal lentgh so to speak __ADD BETTER EXPLANATION__.
+The _ray_origin_ vector is quite simple, it's at the center of the world, slightly elevated above the scene.
+The _ray_direction_ vector is a normalised, or unit vector that defines where the camera points. The first two parameters, _st.s_ and _st.t_ are the canvas coordinates, which means that we cast a ray for each fragment. The last parameter gives a "forward" direction in the z axis.
 
 And with these two variables we have our camera, or rays.
 
@@ -44,10 +44,10 @@ And with these two variables we have our camera, or rays.
 
 The next step is to define the ray marching function. 
 
-First we define three variables.
+First we define the three variables we'll use as break conditions in our ray marching loop.
 -  MAX_STEPS, the maximum number of steps to take along the ray. It will greatly determine how precise the ray marching will be. Can give cool morphing effects when set low.
 - MAX_DIST the maximum distance we want to travel along our ray.
-- SURFACE_DIST, which is the threshold for the minimum distance between the distance traveled so far along the ray and the surface of the primitive. A higher value will give more jagged edged because the rey marching will be less precise.
+- SURFACE_DIST, the minimum value for the distance between the current position and the closest surface. In other words: it's precision. The smaller the number the closer to the surface our ray marching will go.
 
 ``` c
 #define MAX_STEPS 100
@@ -55,27 +55,48 @@ First we define three variables.
 #define SURFACE_DIST 0.01
 ```
 
-The we define the ray marching function, that we creativly call "raymarch".
+The we define the ray marching function, that we creatively call "raymarch".
 
 ``` glsl
-        float raymarch(vec3 ro, vec3 rd){
-            float distance_traveled = 0.;
-            for(int i = 0; i<MAX_STEPS; i++){
-                vec3 current_pos = ro +distance_traveled*rd;
-                float distance_closest = sdSphere(current_pos);
-                distance_traveled += distance_closest;
-                if(distance_closest<SURFACE_DIST || distance_traveled>MAX_DIST){break;}
-            }
+float raymarch(vec3 ro, vec3 rd){
+    float distance_traveled = 0.;
+    for(int i = 0; i<MAX_STEPS; i++){
+        vec3 current_pos = ro +distance_traveled*rd;
+        float distance_closest = sdSphere(current_pos);
+        distance_traveled += distance_closest;
+        if(distance_closest<SURFACE_DIST || distance_traveled>MAX_DIST){break;}
+    }
 
-            return distance_traveled;
-        }
+    return distance_traveled;
+}
 ```
-The raymarch function takes in the ray's origin _ro_ and the ray's direction _rd_
+The raymarch function takes in the two ray variables we created earlier: the ray's origin _ro_ and the ray's direction _rd_.
 
+We set the total distance traveled along the ray to 0.
 
+Then we make a for loop that will run for the maximum number of steps. Inside this loop, we have our step code. First we set our current position to be how far we'll traveled along the ray so far. So for our first step, where we haven't marched along a ray yet, that would be our camera's position _ro_. 
+```glsl
+vec3 current_pos = ro +distance_traveled*rd;
+```
+
+Then we get the distance to the closest surface by calling sdSphere(), which will be explained in the __Signed Distance Functions__ chapter later. The distance is added to the total distance traveled, which will in turn change the current position of the next step.
+
+```glsl
+float distance_closest = sdSphere(current_pos);
+distance_traveled += distance_closest;
+```
+And lastly, we check for break conditions that we talked about earlier.
+```glsl
+    if(distance_closest<SURFACE_DIST || distance_traveled>MAX_DIST){break;}
+    }
+```
 ---
-## Signed distance functions
-definition
+## Signed Distance Functions
+In the ray marching implementation we saw a function called sdSphere(), _sd_ stands for "signed distance", and without it we wouldn't have anything to display when we ray march.
+
+Because of course the point of ray marching is to detect surfaces in our scene, so if we have no surfaces, we have nothing to detect. And we're not loading any 3D meshes or anything like this, so we have to get our surfaces from somewher.
+
+This is where _signed distance functions_ come in. These functions 
 ## Basic shapes
 Using distance functions, basic shapes can easily be drawn. inogo Quilez has a a lot of them listed on his [website](https://iquilezles.org/articles/distfunctions/). However he doesn't give explanations for them, so below are explanations on how to come up with some of these functions.
 ### Sphere
