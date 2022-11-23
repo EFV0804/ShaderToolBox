@@ -1,10 +1,12 @@
 ---
 layout: page
-title:  "Introduction"
+title:  "3D"
 date:   2022-11-22 15:08:55 +0100
 categories: jekyll update
-nav_order: 1
+parent: "Shapes"
+nav_order: 2
+child_nav_order: asc
 has_children: true
 ---
-# Intro
-intro text
+# 3D Shapes
+intro to 3D shapes

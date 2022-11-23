@@ -25,13 +25,18 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://efv0804.github.io/shader_tool_box/" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  EFV0804
-
+markdown: kramdown
 # Build settings
 theme: just-the-docs
 plugins:
   - jekyll-feed
 domain: efv0804.github.io
 url: https://efv0804.github.io/shader_tool_box/
+aux_links:
+  "GitHub repos":
+    - "//github.com/EFV0804/shader_tool_box"
+color_scheme: custom_scheme
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

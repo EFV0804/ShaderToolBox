@@ -4,3 +4,5 @@
 
 layout: home
 ---
+
+This site is under construction. All shader code is available in the Shader Tool Box [repos](https://github.com/EFV0804/shader_tool_box) and on my [ShaderToy page](https://www.shadertoy.com/profile/?show=shaders).
