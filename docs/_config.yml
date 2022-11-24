@@ -27,7 +27,7 @@ url: "https://efv0804.github.io/shader_tool_box/" # the base hostname & protocol
 github_username:  EFV0804
 markdown: kramdown
 # Build settings
-remote_theme: pmarsceill/just-the-docs
+remote_theme: olivier3lanc/Jekyll-LibDoc
 plugins:
   - jekyll-feed
 domain: efv0804.github.io
