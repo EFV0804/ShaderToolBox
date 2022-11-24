@@ -22,7 +22,7 @@ title: The Shader Tool Box
 email: evidal@artfx.fr
 description: >- # this means to ignore newlines until "baseurl:"
   Shader tutorials and example code. Mainly focudes on fragment shaders.
-baseurl: "/docs" # the subpath of your site, e.g. /blog
+baseurl: "/docs/_site" # the subpath of your site, e.g. /blog
 url: "https://efv0804.github.io/shader_tool_box/" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  EFV0804
 markdown: kramdown
