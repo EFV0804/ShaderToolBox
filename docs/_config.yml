@@ -35,7 +35,7 @@ url: https://efv0804.github.io/shader_tool_box/
 aux_links:
   "GitHub repos":
     - "//github.com/EFV0804/shader_tool_box"
-# color_scheme: custom_scheme
+color_scheme: custom_scheme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
