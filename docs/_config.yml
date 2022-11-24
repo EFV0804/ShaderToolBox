@@ -22,12 +22,12 @@ title: The Shader Tool Box
 email: evidal@artfx.fr
 description: >- # this means to ignore newlines until "baseurl:"
   Shader tutorials and example code. Mainly focudes on fragment shaders.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/docs/" # the subpath of your site, e.g. /blog
 url: "https://efv0804.github.io/shader_tool_box/" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  EFV0804
 markdown: kramdown
 # Build settings
-remote_theme: olivier3lanc/Jekyll-LibDoc
+remote_theme: just-the-docs/just-the-docs
 plugins:
   - jekyll-feed
 domain: efv0804.github.io
@@ -35,7 +35,7 @@ url: https://efv0804.github.io/shader_tool_box/
 aux_links:
   "GitHub repos":
     - "//github.com/EFV0804/shader_tool_box"
-color_scheme: custom_scheme
+# color_scheme: dark
 
 # Exclude from processing.
 # The following items will not be processed, by default.
