@@ -8,12 +8,11 @@ uniform vec2 u_mouse;
 #define MAX_DIST 10000000.
 #define SURFACE_DIST 0.0001
 
-mat2 rotate(float a){
-    float s = sin(a);
-    float c = cos(a);
-    return mat2(c, -s, s, c);
+mat2 rotate(float _angle){
+
+    return mat2(cos(_angle), -sin(_angle), sin(_angle), cos(_angle));
 }
-float getDistSphere(vec3 p, vec3 sphere_pos, float radius){
+float sdfSphere(vec3 p, vec3 sphere_pos, float radius){
     vec4 sphere = vec4(sphere_pos,radius);
 
     return length(p-sphere.xyz)-sphere.w;
@@ -45,14 +44,53 @@ float sdfCube(vec3 p, vec3 s){
     return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
 }
 float getSceneDist(vec3 p){
-    float sphere = getDistSphere(p, vec3(0,0,0.), 1.);
-    float capsule = sdfCapsule(p, vec3(0,1,0.5), vec3(0,2,0.5), .2);
-    float torus = sdftorus(p-vec3(1,2,2), vec2(1,0.2));
-    float cube = sdfCube(p-vec3(-2,0.2,1), vec3(0.5));
+
     float plane = p.y+1.5;
-    float d = min(torus, plane);
-    d = min(d, sphere);
-    d = min(d, cube);
+// TRANSLATION + ROTATION
+    // Cube 1 spins on itself
+    vec3 cube_pos = p-vec3(0,-.3,0);
+    cube_pos.xz *= rotate(u_time);
+    float cube1 = sdfCube(cube_pos, vec3(.7));
+    
+    // Cube two spins around the center pivot
+    vec3 cube2_pos = p;
+    cube2_pos.xz *= rotate(u_time);
+    cube2_pos -= vec3(-2,0.5,1);
+    cube2_pos.xz *= rotate(u_time*2.5);
+
+    float cube2 = sdfCube(cube2_pos, vec3(0.5));
+
+    // Cube3 spins around cube 2
+    vec3 cube3_pos = p;
+    cube3_pos.xz *= rotate(u_time*3.5);
+    cube3_pos = cube2_pos-vec3(-1.5,0.5,0);
+    cube3_pos.xz *= rotate(u_time*1.8);
+
+    float cube3 = sdfCube(cube3_pos, vec3(0.2));
+    float d = min(cube1, plane);
+    d = min(d, cube2);
+    d = min(d, cube3);
+
+// BOOLEAN OPERATIONS
+
+    float sphere = sdfSphere(p, vec3(0.5,2.,-2.),.5);
+    float sphere2 = sdfSphere(p, vec3(0.1,2.,-2.5),.5);
+    float boolSubstract = max(-sphere2, sphere);
+    d = min(d, boolSubstract);
+
+    float sphere3 = sdfSphere(p, vec3(-1.2,2.,-2.),.5);
+    float sphere4 = sdfSphere(p, vec3(-1.8,2.,-2),.5);
+    float boolIntersection = max(sphere3, sphere4);
+
+    d = min(d, boolIntersection);
+
+
+    float sphere5 = sdfSphere(p, vec3(-1.2,2.,-2.),.5);
+    float sphere6 = sdfSphere(p, vec3(-1.8,2.,-2),.5);
+    float boolUnion = max(sphere5, sphere6);
+
+    d = min(d, boolUnion);
+
     return d;
 }
 
@@ -132,7 +170,7 @@ void main(){
 
     //Light
     vec3 p  = ro + rd * d;
-    float diffuse = getLight(p, vec3(0.,8.,6.));
+    float diffuse = getLight(p, vec3(2.,5.,-6.));
 
 
 //sdf visualation

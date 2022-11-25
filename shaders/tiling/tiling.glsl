@@ -1,6 +1,3 @@
-// Author @patriciogv - 2015
-// http://patriciogonzalezvivo.com
-
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -9,30 +6,50 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform float u_time;
 
-
-float fadedCricle(in vec2 _st, float radius){
-    vec2 dist = _st-vec2(0.5);
-    return 1.-smoothstep(radius-0.05,radius, dot(dist,dist));
+vec2 random2( vec2 p )
+{
+    return fract(sin(vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3))))*43758.5453);
 }
 
-vec2 tiling(vec2 _st, vec2 scaling){
-    _st.x *= scaling.x; //scale x coord by scale.x
-    _st.y *= scaling.y; //scale y coord by scale.y
+float dots(in vec2 f_st, in vec2 i_st){
 
-    //_st is no longer normalized between 0 and 1, so we use fract() or mod(_st,1.0)
-    //to reset the coords to zero for every unit (+1)
-    _st = fract(_st);
-    //st = mod(st,1.0); //We could alos wrap around every x unit with a modulo
+    float m_distP = 1.;
 
-    return _st;
+    for (int y= -1; y <= 1; y++) {
+        for (int x= -1; x <= 1; x++) {
+            vec2 neighbor = vec2(x,y);
+            vec2 point = random2(i_st + neighbor );
+            point = 0.5 + 0.5*sin(u_time + 6.2831*point);
+            vec2 diff = neighbor + point - f_st;
+            float dist = 1.-smoothstep(.0055,.0054, dot(diff,diff));
+            if(dist *m_distP < m_distP)
+            {
+                m_distP = dist*m_distP;
+            }
+        }
+    }
+
+    return m_distP;
 }
-
 void main(){
 	vec2 st = gl_FragCoord.xy/u_resolution.xy;
 
-    st = tiling(st, vec2(3.0,3.0));
+ 
+    st *= 3.;
+    
+    // Get the factal part of the coordinates, to have normalised coordinates for each tile
+    vec2 f_st = fract(st);
+    //vec2 f_st = mod(st,1.0); //---> We could also use a modulo to achieve the same effect
+    
+    // Get the integral part of the coordinates, we can use this number to identify a tile
+    vec2 i_st = floor(st);
 
-    vec3 color = vec3(fadedCricle(st,0.1));
+    // Circles in each tile
+    vec3 color = vec3(dots(f_st,i_st));    
+    
+    // Grid lines
+    color.r -= step(.98, f_st.x) + step(.98, f_st.y);
+    
     
 
 	gl_FragColor = vec4( color, 1.0 );
