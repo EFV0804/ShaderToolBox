@@ -10,22 +10,6 @@ has_children: true
 # Math
 I can't seem to get used to the traditional math syntax, everything seems a lot simpler in code form in my eyes. So I made this page as quick reference to look up formulas and what the code form looks like.
 # Vectors
-## Vector Magnitude
-How to calculate a vector's magnitude, or its length.
-$$
-\left \| \vec{v} \right \| = \sqrt{v.x^{2}+v.y^{2}}\\$$
-
-In code form:
-~~~glsl
-    vec3 v;
-    float v_length = sqrt(v.x*v.x + v.y*v.y);
-~~~
-
-in GLSL:
-~~~glsl
-    vec3 v;
-    float v_length = length(v);
-~~~
 ## Vector normalisation
 A normalised, or unit, vector, is a vector with the same direction as the given vector but with a length of 1.
 How to get a normlised, or unit, vector from a given vector:
@@ -42,7 +26,73 @@ Or to put it in a more code friendly way:
     vec3 normalised_v = normlize(v);
  ~~~
 
- ## Vector Projection
+## Dot products
+In algebra a dot product is equivalent to this operation:
+
+$$
+\vec{a} \cdot \vec{b} = (a_{x}b_{x})+(a_{y}b_{y})+ ... + (a_{n}b_{n})
+$$
+
+and in GLSL:
+~~~glsl
+float d = dot(a,b);
+~~~
+A dot product is defined by the following formula, where $\Theta$ is the angle between a and b:
+$$
+\vec{a} \cdot \vec{b} = \left\| \vec{a}  \right\|\left\| \vec{b}  \right\| \cos\Theta
+$$
+
+That doesn't really help by itself. But if we also know that $\cos \frac{\pi}{2} = 0$ ($\frac{\pi}{2}$ means 90° for the math impaired like me), then we know that:
+$$\vec{a} \cdot \vec{b} = 0$$
+And that incredibly useful, because it means that we can use a dot product of two vectors to know if they are perpendicular or _orthogonal_.
+
+Another cool thing to know: if two vectors are codirectional, meaning the angle between them is 0, and $\cos0 = 1$, then:
+$$
+\vec{a} \cdot \vec{b} = \left\| \vec{a}  \right\|\left\| \vec{b}  \right\|
+$$
+
+Which implies that if we do a dot product of a vector with itself the dot product is equal to the length of the vector times itself:
+
+$$
+\vec{a} \cdot \vec{a} = \left\| \vec{a}  \right\|\left\| \vec{a}  \right\|
+$$
+or 
+$$
+\vec{a} \cdot \vec{a} = \left\| \vec{a}  \right\|^{2}
+$$
+
+and that in turn implies:
+$$
+\left\| \vec{a}  \right\| = \sqrt{\vec{a} \cdot \vec{a}}
+$$
+
+and that's the same thing as:
+
+$$
+\left\| \vec{a}  \right\| = \sqrt{a_{1}^{2}+ a_{2}^{2} + ... +a_{n}^{2} }
+$$
+
+Which is how we figure out the length of a vector. Neat.
+
+## Vector Magnitude
+As explained right above the formula for the magnitude or length of a vector is:
+
+$$
+\left\| \vec{v}  \right\| = \sqrt{v_{1}^{2}+ v_{2}^{2} + ... +v_{n}^{2} }
+$$
+
+In code form:
+~~~glsl
+    vec3 v;
+    float v_length = sqrt(v.x*v.x + v.y*v.y);
+~~~
+
+in GLSL:
+~~~glsl
+    vec3 v;
+    float v_length = length(v);
+~~~
+## Vector Projection
 A vector projection is like rotating a vector until it is parallel to another vector. It can also be thought of as the shadow that a vector would project onto another vector. To figure out what the vector projection of a vector onto another is, we need to figure out the __scalar projection__. Once we have that, we can figure the vector projection.
 
 
