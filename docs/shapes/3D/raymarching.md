@@ -120,7 +120,7 @@ In the ray marching implementation we saw a function called sdfSphere(), _sdf_ s
 
 Because of course the point of ray marching is to detect surfaces in our scene, so if we have no surfaces, we have nothing to detect. And we're not loading any 3D meshes or anything fancy like this, so we have to get our surfaces from somewhere else.
 
-This is where _signed distance functions_ come in. There are many of them, and they are used to draw basic, and sometimes not so basic, shapes using raymarching. These functions take in our current position, and various other parameters, they apply a shape specific formula and give us the distance from our point to the shape surface. I know it seems really abstract said like this, but that's basically it.
+This is where _signed distance functions_ come in. There are many of them, and they are used to draw basic, and sometimes not so basic, shapes using raymarching. These functions take in our current position, and various other parameters (like a radius for a sphere), they apply a shape specific formula and give us the distance from our point to the shape surface. I know it seems really abstract said like this, but that's basically it.
 
 
 ## Basic shapes
@@ -131,8 +131,34 @@ I'll be repeating a lot of what The Art of Code covers, but I'll try to break do
 ### Sphere
 It is the simplest!
 
-### Box
+The function looks like this:
+
+~~~glsl
+float sdfSphere(vec3 p, vec3 sp, float r){
+    return length(p-spherePos)-r;
+}
+~~~
+
+It takes in the a vector3 _p_, which is our current position along the ray we're marching, a vector3 _sp_, which is the position of the sphere in our scene, and a float _r_, the radius.
+
+In order to return the distance to the surface of the sphere, we can start by mesuring the distance between our position and the sphere position. To get the distance to the surface, we simply substract the radius from that distance.
+
+
+<div style="vertical-align:middle; text-align:center">
+    <img src="./illustrations/SDF_sphere.png"/>
+</div>
+
+For an explanation on the length function, see [here](..\..\math\math.md).
 ### Capsule
+Next are capsules, which are essentially two spheres joined together.
+<div style="vertical-align:center; text-align:center">
+    <img src="./illustrations/SDF_Capsule.png" height="200" />
+</div>
+
+
+
+### Box
+
 ### Torus
 ---
 # Credits

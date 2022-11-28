@@ -41,3 +41,10 @@ Or to put it in a more code friendly way:
  ~~~ glsl
     vec3 normalised_v = normlize(v);
  ~~~
+
+ ## Vector Projection
+A vector projection is like rotating a vector until it is parallel to another vector. It can also be thought of as the shadow that a vector would project onto another vector.
+
+<div style="vertical-align:middle; text-align:center">
+    <img src="./illustrations/vector_projection.png"/>
+</div>
