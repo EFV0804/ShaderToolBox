@@ -111,17 +111,17 @@ void main(){
     mat2 rot_coord = mat2(cos(a), sin(a),
                 -sin(a), cos(a));
                 
-    mat2 rot_noise = mat2(cos(0.4), sin(0.5),
-        -sin(0.5), cos(0.5));
+    mat2 rot_noise = mat2(cos(0.4+u_time*0.00001), sin(0.5+u_time*0.0002),
+        -sin(0.5+u_time*0.00001), cos(0.5+u_time*0.0002));
     // vec2 fbm_st = st*rot+10.;
 
     // vec2 fbm_st = c*rot_coord;
     vec2 fbm_st = c;
 
 
-    for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 2; i++){
         float modifier = random(c);
-        fbm_value = fbm_wrap(fbm_st+fbm_value, rot_noise);
+        fbm_value = fbm_wrap(fbm_st+fbm_value+u_time*0.025, rot_noise);
     }
 
     n.x = fbm_value;
@@ -131,22 +131,22 @@ void main(){
     rot_noise = mat2(cos(0.4), sin(0.5),
                 -sin(0.5), cos(0.5));
 
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 2; i++){
         float modifier = random(c);
-        fbm_value = fbm_wrap(fbm_st+fbm_value, rot_noise);
+        fbm_value = fbm_wrap(fbm_st+fbm_value+u_time*0.025, rot_noise);
     }
 
     n.y = fbm_value;
 
     // fbm_st = c*rot_coord;
 
-    rot_noise = mat2(cos(0.3), sin(0.5),
-                -sin(0.4), cos(0.5));
+    rot_noise = mat2(cos(0.3+u_time*0.00002), sin(0.5+u_time*0.00002),
+                -sin(0.4+u_time*0.0002), cos(0.5+u_time*0.0002));
 
 
     for(int i = 0; i < 3; i++){
         float modifier = random(c);
-        fbm_value = fbm_wrap(fbm_st+fbm_value, rot_noise);
+        fbm_value = fbm_wrap(fbm_st+fbm_value+u_time*0.02, rot_noise);
     }
 
     n.z = fbm_value;

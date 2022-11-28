@@ -123,15 +123,15 @@ void main(){
     color += vec3(f,0.,0.);
 
     color = mix(vec3(0.6, 0.5255, 0.6078),
-                vec3(0.8392, 0.6824, 0.3843),
+                vec3(0.1255, 0.4784, 0.8078),
                 clamp((f*f)*1.0,0.08,1.));
 
     color = mix(color,
-                vec3(0.0863, 0.2745, 0.6),
+                vec3(0.0157, 0.3294, 0.8667),
                 clamp(length(q),0.0,1.0));
 
     color = mix(color,
-                vec3(0.6588, 0.6588, 0.6196),
+                vec3(0.9529, 0.9529, 0.9255),
                 clamp(length(r.x),0.0,1.0));
 
     //regular color mapping
