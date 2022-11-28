@@ -51,7 +51,7 @@ $$
 \vec{a} \cdot \vec{b} = \left\| \vec{a}  \right\|\left\| \vec{b}  \right\|
 $$
 
-Which implies that if we do a dot product of a vector with itself the dot product is equal to the length of the vector times itself:
+Firstly that can help us know if to vectors are parallel or not. And secondly, this implies that if we do a dot product of a vector with itself the dot product is equal to the length of the vector times itself:
 
 $$
 \vec{a} \cdot \vec{a} = \left\| \vec{a}  \right\|\left\| \vec{a}  \right\|
@@ -100,9 +100,15 @@ A vector projection is like rotating a vector until it is parallel to another ve
     <img src="./illustrations/vector_projection.png"/>
 </div>
 
-There are two ways of calculating that projected scalar and vector: either with the angle $\Theta$ if it is known, or with vector a and b.
+---
+### Properties of vector projecitons
+* projb a = 0 if $\Theta$ = 90°
+* projb a and $\vec{b}$ have the same direction if 0° ≤ $\Theta$ < 90°
+* projb a and $\vec{b}$ have opposite directions if 90° <  $\Theta$ ≤ 180°
+
 
 ------
+There are two ways of calculating that projected scalar and vector: either with the angle $\Theta$ if it is known, or with vector a and b.
 ### Vector projection in term of $\Theta$
 The formula for the scalar projection looks like this:
 
