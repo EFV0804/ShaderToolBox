@@ -5,7 +5,7 @@
 layout: default
 ---
 
-This site is under construction. All shader code is available in the Shader Tool Box [repos](https://github.com/EFV0804/shader_tool_box) and on my [ShaderToy page](https://www.shadertoy.com/profile/?show=shaders).
+This website is a place where I keep notes and tutorials to help me understand and remember everything I'm learning. All shader code is available in the Shader Tool Box [repos](https://github.com/EFV0804/shader_tool_box) and on my [ShaderToy page](https://www.shadertoy.com/profile/?show=shaders).
 
 <script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
 
