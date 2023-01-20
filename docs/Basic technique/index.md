@@ -9,3 +9,4 @@ has_children: true
 has_toc: false
 ---
 # Basic Techniques
+This chapter covers the basic technique used most often in fragment shaders, especially when generating procedural textures: tiling.
