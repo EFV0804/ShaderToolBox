@@ -15,3 +15,5 @@ This chapter covers the basic technique used most often in fragment shaders, esp
 <div style="text-align:center" >
 <canvas class="glslCanvas" data-fragment-url="..\shader_frags\tiling.frag" width="500" height="500"></canvas>
 </div>
+
+## ExplanationS
