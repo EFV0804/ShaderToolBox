@@ -10,4 +10,4 @@ child_nav_order: asc
 has_children: true
 ---
 # Rectangles
-How to draw a rectangle
+This is still under construction, but I'll be updating it soon.

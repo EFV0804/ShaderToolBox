@@ -10,8 +10,6 @@ has_children: true
 has_toc: false
 ---
 # Bricks
-# Brick Shader
-
 A 2D brick procedural shader for a brick wall.
 This shader is based on this [tutorial](http://dl.lcg.ufrj.br/cg2/downloads/GPU/brick.html).
 

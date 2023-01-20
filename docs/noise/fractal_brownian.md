@@ -17,4 +17,4 @@ has_children: true
 <canvas class="glslCanvas" data-fragment-url="fbm_warp.frag" width="500" height="500"></canvas>
 </div>
 
-Under construction
+I'm still working on writing up this chapter

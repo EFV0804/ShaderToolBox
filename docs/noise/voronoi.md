@@ -10,7 +10,7 @@ has_children: true
 ---
 # Voronoi
 
-Under construction 
+I'm still working on this chapter too :)
 
 
 <script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
