@@ -1,3 +1,6 @@
 [submodule "shaders/unity/UnityRaymarching"]
 	path = shaders/unity/UnityRaymarching
 	url = git@github.com:EFV0804/UnityRaymarching.git
+[submodule "shaders/unity/UnityClouds"]
+	path = shaders/unity/UnityClouds
+	url = git@github.com:EFV0804/UnityClouds.git
