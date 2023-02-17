@@ -25,13 +25,14 @@ This website is a place where I keep notes and tutorials to help me understand a
   <div class="float-child">
 <canvas class="glslCanvas" data-fragment-url="shader_frags/sky.frag" width="350" height="350"></canvas>
   </div>
-
-</div>
-
-
-<!-- <div>
+  <div>
 <canvas class="glslCanvas" data-fragment-url="shader_frags/oil_stain.frag" width="350" height="350"></canvas>
 </div>
+
+</div>
+
+
+<!-- 
 <div>
 <canvas class="glslCanvas" data-fragment-url="shader_frags/fbm_warp.frag" width="350" height="350"></canvas>
 </div>
