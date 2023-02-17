@@ -30,7 +30,7 @@ Then the two variables that need a few explanations. First **BRICK_TILE_SIZE**. 
 </div>
 
 # Tiling
-Next step consists of tiling our canvas in order to display more than one brick. For that we'll use the same logic as explained in the [tiling exemple](../../../tiling/tiling.glsl), meaning we will devide our noramlised canvas by the size of a brick tile.
+Next step consists of tiling our canvas in order to display more than one brick. For that we'll use the same logic as explained in the [tiling explanation](.\tiling.md), meaning we will devide our noramlised canvas by the size of a brick tile.
 ~~~ glsl
     vec2 position = st/BRICK_TILE_SIZE;
     vec2 norm_position = fract(position)
