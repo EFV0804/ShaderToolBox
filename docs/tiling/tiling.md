@@ -8,13 +8,9 @@ child_nav_order: asc
 has_children: true
 ---
 # Tiling
-This chapter covers the basic technique used most often in fragment shaders, especially when generating procedural textures: tiling. You can find a ShaderToy implementation [here](https://www.shadertoy.com/view/DdlSz2).
+This chapter covers the basic technique used most often in fragment shaders, especially when generating procedural textures: tiling. You can find a ShaderToy implementation below.
 
-<script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
-
-<div style="text-align:center" >
-<canvas class="glslCanvas" data-fragment-url="..\shader_frags\tiling.frag" width="500" height="500"></canvas>
-</div>
+<iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/DdlSz2?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
 
 ## Explanations
 ### Fragment Coordinates
@@ -44,7 +40,7 @@ We can visualise those coordinates using the color value we return.
 ~~~
 
 <div style="vertical-align:center; text-align:center">
-    <img src="./tiling_illustrations/coordinate_to_color_not_normalised.png" width="200" height="200"/>
+    <img src="./tiling_illustrations/coordinate_to_color_not_normalised.PNG" width="200" height="200"/>
 </div>
 
 And we get yellow, because red + green = yellow, and the red and green component seem to be equal to 1 everywhere on the screen. That's because *fragCoord* corresponds to the size of our canvas, which probably goes way past 1 in value, and the output color varies between 0 and 1.
