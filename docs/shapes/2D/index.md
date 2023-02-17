@@ -44,22 +44,24 @@ In order to return the distance to the surface of the circle, we can start by me
 Implementated in the main function it looks like this:
 
 ~~~glsl
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
-{
-	vec2 st = (fragCoord.xy-0.5*iResolution.xy)/iResolution.y;
-    float d = sdCircle(st,0.2);
-    
-    vec3 col = vec3(0.);
-    
-    if(d>0.){
-        col = vec3(0.);
-    }
-    else{
-        col = vec3(1.);
+
+    void mainImage( out vec4 fragColor, in vec2 fragCoord )
+    {
+        vec2 st = (fragCoord.xy-0.5*iResolution.xy)/iResolution.y;
+        float d = sdCircle(st,0.2);
+        
+        vec3 col = vec3(0.);
+        
+        if(d>0.){
+            col = vec3(0.);
+        }
+        else{
+            col = vec3(1.);
+        }
+
+        fragColor = vec4(col,1.0);
     }
 
-	fragColor = vec4(col,1.0);
-}
 ~~~
 
 Here we set the color to black if the distance from the current fragment coordinate to the circle is greater than 0, so if the current fragment is *outside* the circle. If it's within the circle, the color gets set to white.
