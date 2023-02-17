@@ -61,7 +61,7 @@ To normalise the coordinates, we can simply divide them by the resolution, like 
 ~~~
 
 <div style="vertical-align:center; text-align:center">
-    <img src="./tiling_illustrations/coordinate_to_color.png" width="200" height="200"/>
+    <img src="./tiling_illustrations/coordinate_to_color.PNG" width="200" height="200"/>
 </div>
 
 Now when we map the coordinates to the color, we get two cool gradients. A first red gradient going from 0 to 1, so no red at all to full red, depending on how far along the horizontal axis we are. Same for green. And that's pretty neat. It's important to note that (0,0) is located at the bottom left.
@@ -77,7 +77,7 @@ To tile our canvas we can start by scaling up ou coordinates. Say by 3.
     }
 ~~~
 <div style="vertical-align:center; text-align:center">
-    <img src="./tiling_illustrations/scaled_coordinates.png" width="200" height="200"/>
+    <img src="./tiling_illustrations/scaled_coordinates.PNG" width="200" height="200"/>
 </div>
  We can see now that our cool gradients are still there, but they stop at a third of the canvas' height. Which makes sens because our coordinates are not normalised anymore. Tragedy. they now go from 0 to 3.
 
@@ -86,7 +86,7 @@ To tile our canvas we can start by scaling up ou coordinates. Say by 3.
  We can think of the coordinates as forming two distinctive informations. The first: the fractional part of the coordinate, the normalised tile coordinate, that repeats every tile. the second: the integral part of the coordinate, which changes with every tile.
 
  <div style="vertical-align:center; text-align:center">
-    <img src="./tiling_illustrations/tile_diagram.png" width=80% height=80%/>
+    <img src="./tiling_illustrations/tile_diagram.PNG" width=80% height=80%/>
 </div>
 
 So if we extract the fractional part of the coordinates and map them to the color, we should get the cool gradients but repeated 3 times. To do that we can use the GLSL built in function *fract()* which return the fractional part of a number, and use the new *f_st* variable as color values. For more info on the *fract()* function: the [Khronos Group Doc](https://registry.khronos.org/OpenGL-Refpages/gl4/html/fract.xhtml)
@@ -102,7 +102,7 @@ So if we extract the fractional part of the coordinates and map them to the colo
 ~~~
 
  <div style="vertical-align:center; text-align:center">
-    <img src="./tiling_illustrations/scaled_coordinates_fractional.png" width=200 height=200/>
+    <img src="./tiling_illustrations/scaled_coordinates_fractional.PNG" width=200 height=200/>
 </div>
 
 And that's pretty much how we make tiles. Here is the ShaderToy implementation.
