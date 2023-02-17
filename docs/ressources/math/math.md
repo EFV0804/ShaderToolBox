@@ -3,7 +3,8 @@ layout: page
 title:  "Math"
 date:   2022-11-22 15:08:55 +0100
 categories: jekyll update
-nav_order: 2
+parent: "ressources"
+nav_order: 1
 child_nav_order: asc
 has_children: true
 ---
