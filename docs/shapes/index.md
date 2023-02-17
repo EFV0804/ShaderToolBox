@@ -9,4 +9,4 @@ has_children: true
 has_toc: false
 ---
 # Shapes
-intro to shapes
+Shapes: how to define them and what to do with them.
