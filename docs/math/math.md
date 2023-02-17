@@ -9,6 +9,7 @@ has_children: true
 ---
 # Math
 I can't seem to get used to the traditional math syntax, everything seems a lot simpler in code form in my eyes. So I made this page as quick reference to look up formulas and what the code form looks like.
+
 # Vectors
 ## Vector normalisation
 A normalised, or unit, vector, is a vector with the same direction as the given vector but with a length of 1.
