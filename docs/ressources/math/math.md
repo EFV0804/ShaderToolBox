@@ -44,7 +44,7 @@ $$
 \vec{a} \cdot \vec{b} = \left\| \vec{a}  \right\|\left\| \vec{b}  \right\| \cos\Theta
 $$
 
-That doesn't really help by itself. But if we also know that $\cos \frac{\pi}{2} = 0$ ($\frac{\pi}{2}$ means 90° for the math impaired like me), then we know that:
+That doesn't really help by itself. But if we also know that $\cos \frac{\pi}{2} = 0$ ($\frac{\pi}{2}$ means 90° for the math impaired like me, then we know that:
 $$\vec{a} \cdot \vec{b} = 0$$
 And that incredibly useful, because it means that we can use a dot product of two vectors to know if they are perpendicular or _orthogonal_.
 
