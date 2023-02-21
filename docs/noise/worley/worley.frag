@@ -15,8 +15,6 @@ void main()
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
     st.x *= u_resolution.x/u_resolution.y;
 
-
-
     st *= 3.;
 
     vec2 i_st = floor(st);

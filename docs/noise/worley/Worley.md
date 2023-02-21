@@ -20,10 +20,7 @@ has_children: true
 Worley noise was created by Steven Worley and used to make procedural texture for things like, water caustics, stone, cells. The basic logic of the algorithm behind this noise is to measure the distance from every position to  arbitrary points in space (2D or 3D), and to then use that distance to represent something. 
 
 In the case of a fragment shader we would measure the distancec from every fragment coordinate to the arbirtary points, and use the distance as a color value.
-
-            DIAGRAM OF A POINT AND ARROWS TO VARIOUS FRAGMETN COORDIANTES
-
-
+---
 ## Implementation
 ### A single point
 We can start to implement Worley noise with a single point at the center of the canvas, and measuring the distance to that.
