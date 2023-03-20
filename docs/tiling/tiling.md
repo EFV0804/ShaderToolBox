@@ -86,7 +86,7 @@ To tile our canvas we can start by scaling up ou coordinates. Say by 3.
  We can think of the coordinates as forming two distinctive informations. The first: the fractional part of the coordinate, the normalised tile coordinate, that repeats every tile. the second: the integral part of the coordinate, which changes with every tile.
 
  <div style="vertical-align:center; text-align:center">
-    <img src="./tiling_illustrations/tile_diagram.PNG" width=80% height=80%/>
+    <img src="./tiling_illustrations/tile_diagram.png" width=80% height=80%/>
 </div>
 
 So if we extract the fractional part of the coordinates and map them to the color, we should get the cool gradients but repeated 3 times. To do that we can use the GLSL built in function *fract()* which return the fractional part of a number, and use the new *f_st* variable as color values. For more info on the *fract()* function: the [Khronos Group Doc](https://registry.khronos.org/OpenGL-Refpages/gl4/html/fract.xhtml)
