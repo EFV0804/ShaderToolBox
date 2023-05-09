@@ -1,4 +1,4 @@
 # Shader Tool Box
-A set of useful shader functions
+A place where I keep my fragment shaders, tutorials, ressources and gh pages src files.
 
-:eyes:
+🖖
